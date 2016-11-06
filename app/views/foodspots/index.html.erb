@@ -1,0 +1,9 @@
+<% @foodspots.each do |spot| %>
+    <%= spot.name%><br>
+    <%= spot.address%><br>
+    <%= link_to spot do %>
+    <%= image_tag spot.image.url(:thumb) %>
+    <%end%>
+    <br>
+  <% end %>
+<%= link_to "add Foodspot", new_foodspot_path%>
