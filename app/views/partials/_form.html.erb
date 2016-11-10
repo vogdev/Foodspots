@@ -11,7 +11,9 @@
 
   <div class="field">
     <%= f.label :category_id %>
-    <%= f.text_field :category_id, required: true  %>
+    <!-- <%= f.text_field :category_id, required: true  %> -->
+    <%= collection_select( :foodspot, :category_id, Category.all, :id, :name, {}, { :multiple => false } ) %>
+
   </div>
 
   <div class="field">
@@ -25,7 +27,7 @@
   </div>
   <div class="field">
     <%= f.label :image %>
-    <%= f.file_field :image, required: true  %>
+    <%= f.file_field :image %>
   </div>
 
   <div class="field">

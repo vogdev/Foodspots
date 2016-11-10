@@ -1,4 +1,25 @@
-<%= @foodspot.name%><br>
-<%= @foodspot.address%><br>
+Name: <%= @foodspot.name%><br>
+Address: <%= @foodspot.address%><br>
+Kitchen: <%= @foodspot.category.name%><br>
+Website: <%= @foodspot.website%><br>
+Phone: <%= @foodspot.phone%><br>
 <%= image_tag @foodspot.image.url(:original) %>
-<!-- <%= link_to "Edit Foodspot", new_foodspot_path%> -->
+
+<% if user_signed_in? %>
+  <% if current_user.liked? @foodspot %>
+  <%= link_to "unlike", unlike_foodspot_path(@foodspot), method: :put %>
+    <% else %>
+    <%= link_to "like", like_foodspot_path(@foodspot), method: :put %>
+    <% end %>
+<%end%>
+
+<% @foodspot.votes_for.voters.each do |p| %>
+<%= link_to p do %>
+<%= image_tag(p.avatar.url(:thumb)) %>
+<% end %>
+<%end%>
+
+<% unless :authorize_admin? %>
+<%= link_to "Edit Foodspot", edit_foodspot_path(@foodspot)%>
+<%= link_to  'Destroy', @foodspot, method: :delete, data: { confirm: 'Click Sure! to Delete this item' }%>
+<% end %>

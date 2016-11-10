@@ -1,4 +1,6 @@
 class Foodspot < ApplicationRecord
+  has_many :votes
+  acts_as_votable
   belongs_to :category
   has_attached_file :image, styles: { original: "750x500>", thumb: "300x250>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
