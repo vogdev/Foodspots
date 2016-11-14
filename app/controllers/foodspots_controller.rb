@@ -1,5 +1,5 @@
 class FoodspotsController < ApplicationController
-  before_action :authorize_admin, except: [:index, :show, :upvote, :downvote,:near]
+  before_action :authorize_admin, except: [:index, :show, :upvote, :downvote, :near, :search]
   before_action :find_foodspot, only: [ :show, :edit, :update, :destroy, :upvote, :downvote]
   def index
       @foodspots = Foodspot.where(visible: true)
@@ -16,7 +16,9 @@ def near
   visitor_longitude = -111.9052063
       @foodspots = Foodspot.near([visitor_latitude, visitor_longitude], 50, :ordare => :distance).where(visible: true)
 end
-
+def search
+  @foodspots = Foodspot.search(params)
+end
   def new
       @foodspot = Foodspot.new
   end

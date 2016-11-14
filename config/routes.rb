@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   resources :foodspots do
     member do
       put "like" => "foodspots#upvote"
-      put "unlike" => "foodspots#downvote"
+      put "unlike"  => "foodspots#downvote"
+    end
+    collection do
+      get 'search'  => "foodspots#search"
     end
   end
 match '/nearme', to: 'foodspots#near', via: :get
