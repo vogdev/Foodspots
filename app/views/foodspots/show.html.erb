@@ -4,7 +4,6 @@ Kitchen: <%= @foodspot.category.name%><br>
 Website: <%= @foodspot.website%><br>
 Phone: <%= @foodspot.phone%><br>
 <%= image_tag @foodspot.image.url(:original) %>
-
 <% if user_signed_in? %>
   <% if current_user.liked? @foodspot %>
   <%= link_to "unlike", unlike_foodspot_path(@foodspot), method: :put %>
@@ -12,14 +11,29 @@ Phone: <%= @foodspot.phone%><br>
     <%= link_to "like", like_foodspot_path(@foodspot), method: :put %>
     <% end %>
 <%end%>
-
 <% @foodspot.votes_for.voters.each do |p| %>
 <%= link_to p do %>
 <%= image_tag(p.avatar.url(:thumb)) %>
 <% end %>
 <%end%>
 
-<% unless :authorize_admin? %>
+<%= render 'partials/disqus' %>
+
+<% if current_user.try(:admin?) %>
 <%= link_to "Edit Foodspot", edit_foodspot_path(@foodspot)%>
 <%= link_to  'Destroy', @foodspot, method: :delete, data: { confirm: 'Click Sure! to Delete this item' }%>
 <% end %>
+<%= render 'partials/map'%>
+
+
+<%unless @foodspot.nearbys(30).any? == false%>
+<h3>Foodspots near <%= @foodspot.name %></h3>
+<% for foodspot in @foodspot.nearbys(30).where(visible: true).take(2)%>
+      Name: <%= foodspot.name%>
+        <%= link_to foodspot.address, foodspot %> <%= foodspot.distance.round(2)%> miles</br>
+  <% end %>
+
+<%else%>
+<h3>There is no Foodspots near <%= @foodspot.name %></h3>
+<p>I know a FoodSpot near <%= @foodspot.name %> </p>
+<%end%>

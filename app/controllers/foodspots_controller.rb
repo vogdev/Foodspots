@@ -1,12 +1,21 @@
 class FoodspotsController < ApplicationController
-  before_action :authorize_admin, except: [:index, :show, :upvote, :downvote]
+  before_action :authorize_admin, except: [:index, :show, :upvote, :downvote,:near]
   before_action :find_foodspot, only: [ :show, :edit, :update, :destroy, :upvote, :downvote]
   def index
-    @foodspots = Foodspot.where(visible: true)
+      @foodspots = Foodspot.where(visible: true)
   end
 
   def show
   end
+
+def near
+  # i commented this variables because i am in development mode => visitor_latitude and visitor_longitude are = 0.0
+  # visitor_latitude = request.location.latitude
+  # visitor_longitude = request.location.longitude
+  visitor_latitude = 33.4324152
+  visitor_longitude = -111.9052063
+      @foodspots = Foodspot.near([visitor_latitude, visitor_longitude], 50, :ordare => :distance).where(visible: true)
+end
 
   def new
       @foodspot = Foodspot.new
@@ -42,9 +51,10 @@ class FoodspotsController < ApplicationController
   end
 
   def upvote
-    @foodspot.liked_by current_user
-    redirect_back fallback_location: @foodspot
+        @foodspot.upvote_by current_user
+        redirect_back fallback_location: @foodspot
   end
+
   def downvote
     @foodspot.unliked_by current_user
     redirect_back fallback_location: @foodspot

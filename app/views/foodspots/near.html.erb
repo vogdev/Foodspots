@@ -1,0 +1,15 @@
+<% @foodspots.each do |spot| %>
+    <%= spot.name%><br>
+    <%= spot.address%><br>
+    <%= link_to spot do %>
+    <%= image_tag spot.image.url(:thumb) %>
+    <% end %>
+    <p> Liked by <span class="color"> <%= pluralize(spot.get_upvotes.size ,'person') %> </span></p>
+    <% spot.votes_for.voters.each do |p| %>
+    <%= image_tag(p.avatar.url(:thumb)) %>
+    <%end%>
+    <br>
+  <% end %>
+  <% if current_user.try(:admin?) %>
+    <%= link_to "add Foodspot", new_foodspot_path%>
+  <% end %>
