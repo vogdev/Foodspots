@@ -18,6 +18,7 @@ Phone: <%= @foodspot.phone%><br>
 <%end%>
 
 <%= render 'partials/disqus' %>
+<%= render 'partials/facebookComments'%>
 
 <% if current_user.try(:admin?) %>
 <%= link_to "Edit Foodspot", edit_foodspot_path(@foodspot)%>

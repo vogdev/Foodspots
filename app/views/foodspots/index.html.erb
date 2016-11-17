@@ -4,10 +4,11 @@
 <%= select_tag :category, options_for_select(Category.all.map{ |c| [c.name, c.id]}) %>
 <%= submit_tag 'Search' %>
 <%end%>
+
 <% @foodspots.each do |spot| %>
     <%= spot.name%><br>
     <%= spot.address%><br>
-    <%= link_to spot do %>
+    <%= link_to spot , data: { turbolinks: false } do %>
     <%= image_tag spot.image.url(:thumb) %>
     <% end %>
     <p> Liked by <span class="color"> <%= pluralize(spot.get_upvotes.size ,'person') %> </span></p>

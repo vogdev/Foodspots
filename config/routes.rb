@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'foodspots#index'
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
   resources :users, :only => [:show]
   resources :foodspots do
     member do

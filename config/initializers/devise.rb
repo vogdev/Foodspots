@@ -201,7 +201,8 @@ Devise.setup do |config|
   # Don't put a too small interval or your users won't have the time to
   # change their passwords.
   config.reset_password_within = 6.hours
-
+  # config.omniauth :github,  ENV['github_key'],  ENV['github_secret'], :scope => 'user'
+  config.omniauth :facebook,  ENV['facebook_key'],  ENV['facebook_secret']
   # When set to false, does not sign a user in automatically after their password is
   # reset. Defaults to true, so a user is signed in automatically after a reset.
   # config.sign_in_after_reset_password = true
