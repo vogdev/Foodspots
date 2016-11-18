@@ -1,10 +1,3 @@
-<%= form_tag search_foodspots_path, method: :get do |f| %>
-<%= text_field_tag :search, nil, placeholder: "hot dogs , burgers , etc."%>
-<!-- <%= text_field_tag :address, nil, placeholder: "chicago , Morocco , etc."%> -->
-<%= select_tag :category, options_for_select(Category.all.map{ |c| [c.name, c.id]}) %>
-<%= submit_tag 'Search' %>
-<%end%>
-
 <% @foodspots.each do |spot| %>
     <%= spot.name%><br>
     <%= spot.address%><br>
@@ -20,7 +13,4 @@
     <%end%>
     <%end%>
     <br>
-  <% end %>
-  <% if current_user.try(:admin?) %>
-    <%= link_to "add Foodspot", new_foodspot_path%>
   <% end %>

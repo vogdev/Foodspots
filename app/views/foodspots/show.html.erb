@@ -13,7 +13,11 @@ Phone: <%= @foodspot.phone%><br>
 <%end%>
 <% @foodspot.votes_for.voters.each do |p| %>
 <%= link_to p do %>
-<%= image_tag(p.avatar.url(:thumb)) %>
+  <%if p.provider  == "facebook" %>
+  <%= image_tag p.avatar_file_name + "?type=normal"%>
+    <%else%>
+    <%= image_tag(p.avatar.url(:thumb)) %>
+  <%end%>
 <% end %>
 <%end%>
 

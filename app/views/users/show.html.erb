@@ -8,7 +8,11 @@
       <% end %>
       <p> Liked by <span class="color"> <%= pluralize(item.get_upvotes.size ,'person') %> </span></p>
       <% item.votes_for.voters.each do |p| %>
-      <%= image_tag(p.avatar.url(:thumb)) %>
+      <%if p.provider  == "facebook" %>
+      <%= image_tag p.avatar_file_name + "?type=normal"%>
+        <%else%>
+        <%= image_tag(p.avatar.url(:thumb)) %>
+      <%end%>
       <%end%>
       <br>
 <%end%>

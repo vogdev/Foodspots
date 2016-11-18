@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     end
     collection do
       get 'search'  => "foodspots#search"
+      get 'popular'  => "foodspots#popular"
     end
   end
 match '/nearme', to: 'foodspots#near', via: :get

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161116233446) do
+ActiveRecord::Schema.define(version: 20161118024137) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -24,15 +24,29 @@ ActiveRecord::Schema.define(version: 20161116233446) do
     t.integer  "category_id"
     t.string   "address"
     t.string   "website"
-    t.boolean  "visible",            default: false
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.boolean  "visible",                 default: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.float    "latitude"
     t.float    "longitude"
+    t.integer  "cached_votes_total",      default: 0
+    t.integer  "cached_votes_score",      default: 0
+    t.integer  "cached_votes_up",         default: 0
+    t.integer  "cached_votes_down",       default: 0
+    t.integer  "cached_weighted_score",   default: 0
+    t.integer  "cached_weighted_total",   default: 0
+    t.float    "cached_weighted_average", default: 0.0
+    t.index ["cached_votes_down"], name: "index_foodspots_on_cached_votes_down"
+    t.index ["cached_votes_score"], name: "index_foodspots_on_cached_votes_score"
+    t.index ["cached_votes_total"], name: "index_foodspots_on_cached_votes_total"
+    t.index ["cached_votes_up"], name: "index_foodspots_on_cached_votes_up"
+    t.index ["cached_weighted_average"], name: "index_foodspots_on_cached_weighted_average"
+    t.index ["cached_weighted_score"], name: "index_foodspots_on_cached_weighted_score"
+    t.index ["cached_weighted_total"], name: "index_foodspots_on_cached_weighted_total"
   end
 
   create_table "users", force: :cascade do |t|

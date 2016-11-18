@@ -1,28 +1,30 @@
 class FoodspotsController < ApplicationController
-  before_action :authorize_admin, except: [:index, :show, :upvote, :downvote, :near, :search]
+  before_action :authorize_admin, except: [:index, :show, :upvote, :downvote, :near, :search, :popular]
   before_action :find_foodspot, only: [ :show, :edit, :update, :destroy, :upvote, :downvote]
   def index
-      @foodspots = Foodspot.where(visible: true)
+      @foodspots = Foodspot.where(visible: true).order('created_at DESC')
   end
 
   def show
   end
-
-def near
+  def popular
+    # foodspots are orederd by total_votes first and created_at time second
+    @foodspots = Foodspot.where(visible: true).order(cached_votes_total: :desc, created_at: :desc)
+  end
+  def near
   # i commented this variables because i am in development mode => visitor_latitude and visitor_longitude are = 0.0
   # visitor_latitude = request.location.latitude
   # visitor_longitude = request.location.longitude
-  visitor_latitude = 33.4324152
-  visitor_longitude = -111.9052063
-      @foodspots = Foodspot.near([visitor_latitude, visitor_longitude], 50, :ordare => :distance).where(visible: true)
-end
-def search
-  @foodspots = Foodspot.search(params)
-end
-  def new
-      @foodspot = Foodspot.new
+    visitor_latitude = 33.4324152
+    visitor_longitude = -111.9052063
+    @foodspots = Foodspot.near([visitor_latitude, visitor_longitude], 50, :ordare => :distance).where(visible: true)
   end
-
+  def search
+    @foodspots = Foodspot.search(params)
+  end
+  def new
+    @foodspot = Foodspot.new
+  end
   def create
     @foodspot = Foodspot.create(foodspot_params)
     if @foodspot.save
