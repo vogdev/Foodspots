@@ -20,7 +20,7 @@ Phone: <%= @foodspot.phone%><br>
   <%end%>
 <% end %>
 <%end%>
-
+<p> Liked by <span class="color"> <%= pluralize(@foodspot.get_upvotes.size ,'person') %> </span></p>
 <%= render 'partials/disqus' %>
 <%= render 'partials/facebookComments'%>
 

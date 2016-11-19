@@ -1,16 +1,27 @@
-<% @foodspots.each do |spot| %>
-    <%= spot.name%><br>
-    <%= spot.address%><br>
-    <%= link_to spot , data: { turbolinks: false } do %>
-    <%= image_tag spot.image.url(:thumb) %>
+  <div class="row">
+    <% @foodspots.each do |spot| %>
+    <div class="col-sm-6 col-md-4">
+        <%= image_tag spot.image.url(:thumb), class: "foodspot-img" %>
+        <div class="caption">
+          <%= link_to spot , data: { turbolinks: false } do %>
+          <div class="text-center">
+            <h3><%= spot.name%></h3>
+            <p><%= truncate(spot.address, length: 30)%></p>
+          </div>
+          <% end %>
+          <%if user_signed_in?%>
+              <div class="voters-img pull-right">
+                <% spot.votes_for.voters.each do |p| %>
+                <%if p.provider  == "facebook" %>
+                <%= image_tag p.avatar_file_name + "?type=normal", class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}"%>
+                <%else%>
+                <%= image_tag p.avatar.url(:thumb), class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}" %>
+                <%end%>
+                <%end%>
+            </div>
+            <p class="liked"> Liked by <sapn class="upvotes"><%= spot.get_upvotes.size %></sapn> <%= "person".pluralize(spot.get_upvotes.size)%></p>
+          <%end%>
+        </div>
+    </div>
     <% end %>
-    <p> Liked by <span class="color"> <%= pluralize(spot.get_upvotes.size ,'person') %> </span></p>
-    <% spot.votes_for.voters.each do |p| %>
-    <%if p.provider  == "facebook" %>
-    <%= image_tag p.avatar_file_name + "?type=normal"%>
-      <%else%>
-      <%= image_tag(p.avatar.url(:thumb)) %>
-    <%end%>
-    <%end%>
-    <br>
-  <% end %>
+  </div>

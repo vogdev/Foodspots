@@ -17,30 +17,13 @@
   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-    <% if user_signed_in? %>
-          <%if current_user.provider  == "facebook" %>
-          <%= image_tag current_user.avatar_file_name + "?type=normal"%>
-            <%else%>
-            <%= image_tag(current_user.avatar.url(:thumb)) %>
-          <%end%>
-          <%= link_to "Settings", edit_user_registration_path %>
-          <%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
-    <%end%>
-
-
-
-
-    <% unless user_signed_in? %>
-            <li><%= link_to "Log in", new_user_session_path %></li>
-            <li><%= link_to "Sign up", new_user_registration_path %></li>
-    <%end%>
-      <% if current_user.try(:admin?) %>
-      <h1> Welcom admin</h1>
-      <% elsif user_signed_in?%>
-      <h1>Welcom User <%= current_user.username %></h1>
-    <% end %>
+<div class="container-fluid">
+  <%= render 'partials/navbar'%>
+</div>
+<div class="container">
     <p class="notice"><%= notice%></p>
     <p class="alert"><%= alert%></p>
     <%= yield %>
+  </div>
   </body>
 </html>

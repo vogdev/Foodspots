@@ -4,23 +4,33 @@
 <%= select_tag :category, options_for_select(Category.all.map{ |c| [c.name, c.id]}) %>
 <%= submit_tag 'Search' %>
 <%end%>
+<div class="row">
 
-<% @foodspots.each do |spot| %>
-    <%= spot.name%><br>
-    <%= spot.address%><br>
-    <%= link_to spot , data: { turbolinks: false } do %>
-    <%= image_tag spot.image.url(:thumb) %>
-    <% end %>
-    <p> Liked by <span class="color"> <%= pluralize(spot.get_upvotes.size ,'person') %> </span></p>
-    <% spot.votes_for.voters.each do |p| %>
-    <%if p.provider  == "facebook" %>
-    <%= image_tag p.avatar_file_name + "?type=normal"%>
-      <%else%>
-      <%= image_tag(p.avatar.url(:thumb)) %>
-    <%end%>
-    <%end%>
-    <br>
+  <% @foodspots.each do |spot| %>
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <%= link_to spot , data: { turbolinks: false } do %>
+      <%= image_tag spot.image.url(:thumb) %>
+      <% end %>
+      <div class="caption">
+        <h3><%= spot.name%></h3>
+        <p><%= spot.address%></p>
+        <%if user_signed_in?%>
+            <p> Liked by <span class="color"> <%= pluralize(spot.get_upvotes.size ,'person') %> </span></p>
+            <% spot.votes_for.voters.each do |p| %>
+            <%if p.provider  == "facebook" %>
+            <%= image_tag p.avatar_file_name + "?type=normal", class: "img-circle"%>
+            <%else%>
+            <%= image_tag p.avatar.url(:thumb), class: "img-circle" %>
+            <%end%>
+            <%end%>
+        <%end%>
+      </div>
+    </div>
+  </div>
   <% end %>
-  <% if current_user.try(:admin?) %>
-    <%= link_to "add Foodspot", new_foodspot_path%>
-  <% end %>
+
+</div>
+<% if current_user.try(:admin?) %>
+  <%= link_to "add Foodspot", new_foodspot_path%>
+<% end %>
