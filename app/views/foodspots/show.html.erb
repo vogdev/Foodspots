@@ -1,18 +1,20 @@
 <div class="row">
-  <div class="col-sm-12 col-md-12 col-lg-12">
-    <h2><%= @foodspot.name%>
-      <% if user_signed_in? %>
-      <%= render 'partials/like' , spot: @foodspot%>
-      <%end%>
-    </h2>
-    <p class="pull-right">Kitchen: <%= @foodspot.category.name%></p>
-    <p><%= @foodspot.address%></p>
-  </div>
 
-  <div class="col-sm-12 col-md-8 col-lg-8">
+<div class="col-sm-12 col-md-12 col-lg-12">
+  <h2><%= @foodspot.name%>
+    <% if user_signed_in? %>
+    <%= render 'partials/like' , spot: @foodspot%>
+    <%end%>
+  </h2>
+  <p class="pull-right">Kitchen: <%= @foodspot.category.name%></p>
+  <p><%= @foodspot.address%></p>
+</div>
+
+<div class="col-sm-12 col-md-8 col-lg-8">
     <%= image_tag @foodspot.image.url(:original) %>
+  <!-- checking if there is no votes then there is no need to process the code below -->
     <% unless @foodspot.votes_for.voters.empty? %>
-
+  <!-- this is the foodspot voters(people who liked this foodspot) onl last 3 who get displayed -->
       <p class="liked-show"> Liked by <sapn class="upvotes"><%= @foodspot.get_upvotes.size %></sapn> <%= "person".pluralize(@foodspot.get_upvotes.size)%></p>
       <% @foodspot.votes_for.voters.last(3).each do |p| %>
         <%= link_to p do %>
@@ -23,29 +25,31 @@
             <%end%>
         <% end %>
       <%end%>
-      <% if @foodspot.votes_for.voters.count > 3 %>
-      <%#= render 'partials/users_modal'%>
+  <!-- //////////////// end of foodspot voters //////////////// -->
+
+  <!-- here all the voters displayed on a modal via ajax -->
+    <% if @voters_number > 3 %>
         <%= link_to foodspot_path, id: "mymodal", class:"btn seemore",remote: true do%>
           <span class="glyphicon glyphicon-option-horizontal"></span>
         <%end%>
       <%end%>
-
+  <!-- ////////////////   end of modal //////////////// -->
     <%end%>
+<!-- //////////////// end of checking the votes //////////////// -->
     <div class="fb-comments">
       <%= render 'partials/facebookComments'%>
     </div>
-  </div>
+</div>
 
-
-  <div class="col-sm-12 col-md-4 col-lg-4">
-
-    <%= render 'partials/map'%>
-    <div class="info">
-    <p class="lead">
+<div class="col-sm-12 col-md-4 col-lg-4">
+  <%= render 'partials/map'%> <!-- Google map -->
+  <div class="info">
+  <p class="lead">
     Phone: <%= @foodspot.phone%><br>
     Website: <%= @foodspot.website%></p>
-    </div>
   </div>
+</div>
+
 <div class="col-sm-12 col-md-12 col-lg-12 text-center">
 
   <%unless @foodspot.nearbys(30).where(visible: true).any? == false%>

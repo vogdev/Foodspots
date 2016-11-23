@@ -24,6 +24,7 @@
 }
 .foodspot-img{
   width: 360px;
+  height: 240px;
 }
 .user-img-small {
   width: 45px;
@@ -66,6 +67,13 @@ color: #FFFFFF;
 .margin-b{
   margin-bottom: 40px;
   min-height: 250px;
+}
+.pad-l-b{
+  padding: 0 0 20px 20px;
+}
+.media-left, .media-right, .media-body {
+    display: table-cell;
+    vertical-align: inherit;
 }
 .like {
   font-size: 30px;
@@ -117,16 +125,31 @@ color: #FFFFFF;
   padding-top: 25px;
 }
 
+.index-link {
+  width: 360px;
+  height: 240px;
+  bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.46);
+  color: #ffffff;
+}
 
-
-
-
-
-.seemore {
-  background-color: #fc8735;
+.index-link:hover {
+  color: #ffffff;
 }
 
 
+.seemore {
+  color: #333;
+  background-color: #fc8735;
+}
+.modal-user-a {
+  color: #000000;
+text-decoration: none;
+}
+.modal-user-a:hover {
+  color: #000000;
+text-decoration: none;
+}
 
 
 
@@ -145,5 +168,6 @@ color: #FFFFFF;
 
   .foodspot-img {
     width: 340px;
+    height: 227px;
   }
 }

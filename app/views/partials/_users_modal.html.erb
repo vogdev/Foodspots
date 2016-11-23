@@ -1,17 +1,27 @@
-<button id="openmodal" type="button" class="btn" data-toggle="modal" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
+<button id="openmodal" type="button" class="btn seemore" data-toggle="modal" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
 <div class="modal-dialog modal-sm" role="document">
-<div class="modal-content">
+<div class="modal-content pad-l-b">
+<h2>
+  <span class="glyphicon glyphicon-heart like"></span><%= @voters_number %>
+</h2>
   <% @foodspot.votes_for.voters.each do |p| %>
-  <%= link_to p do %>
-    <%if p.provider  == "facebook" %>
-      <%= image_tag p.avatar_file_name + "?type=normal", class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}"%>
-    <%else%>
-      <%= image_tag p.avatar.url(:thumb), class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}" %>
-    <%end%>
+  <div class="media">
+    <%= link_to p, class:"modal-user-a" do %>
+  <div class="media-left">
+      <%if p.provider  == "facebook" %>
+        <%= image_tag p.avatar_file_name + "?type=normal", class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}"%>
+      <%else%>
+        <%= image_tag p.avatar.url(:thumb), class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}" %>
+      <%end%>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading"><%= p.username%></h4>
+  </div>
   <% end %>
-</br>
-  <%end%>
+</div>
+<%end%>
+
 </div>
 </div>
 </div>

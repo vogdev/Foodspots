@@ -15,7 +15,7 @@
             <% end %>
             <%if user_signed_in?%>
                 <div class="voters-img pull-right">
-                  <% spot.votes_for.voters.last(4).each do |p| %>
+                  <% spot.votes_for.voters.last(3).each do |p| %>
                   <%if p.provider  == "facebook" %>
                   <%= image_tag p.avatar_file_name + "?type=normal", class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}"%>
                   <%else%>

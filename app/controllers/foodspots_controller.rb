@@ -6,6 +6,7 @@ class FoodspotsController < ApplicationController
   end
 
   def show
+      @voters_number = @foodspot.votes_for.voters.count
   end
   def popular
     # foodspots are orederd by total_votes first and created_at time second

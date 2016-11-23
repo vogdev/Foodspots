@@ -16,14 +16,14 @@ Category.create! [
   {id: "6" ,name: "chinese"},
 ]
 puts "Success: Category data loaded"
-# Foodspot.destroy_all
-#
-# Foodspot.create! [
-#   {id: "1" ,name: "Figaro"},
-#   {id: "2" ,name: "Bar Spek"},
-#   {id: "3" ,name: "Barra"},
-#   {id: "4" ,name: "Ter Brugge"},
-#   {id: "5" ,name: "Rdf"},
-#   {id: "6" ,name: "chinese"},
-# ]
-# puts "Success: Category data loaded"
+
+User.create!([
+  {username:"username seed",email: "test1@test.com", password: "Password", password_confirmation: "Password", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2015-02-06 14:02:10", last_sign_in_at: "2015-02-06 14:02:10", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", admin: false},
+  {username:"username seed",email: "test2@test.com", password: "Password", password_confirmation: "Password", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2015-02-06 14:02:10", last_sign_in_at: "2015-02-06 14:02:10", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", admin: false},
+  {username:"username seed",email: "test3@test.com", password: "Password", password_confirmation: "Password", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2015-02-06 14:02:10", last_sign_in_at: "2015-02-06 14:02:10", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", admin: false},
+  {username:"username seed",email: "test4@test.com", password: "Password", password_confirmation: "Password", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2015-02-06 14:02:10", last_sign_in_at: "2015-02-06 14:02:10", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", admin: false},
+  {username:"username seed",email: "test5@test.com", password: "Password", password_confirmation: "Password", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2015-02-06 14:02:10", last_sign_in_at: "2015-02-06 14:02:10", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", admin: false},
+  {username:"username seed",email: "test6@test.com", password: "Password", password_confirmation: "Password", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2015-02-06 14:02:10", last_sign_in_at: "2015-02-06 14:02:10", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", admin: false},
+  {username:"username seed",email: "test7@test.com", password: "Password", password_confirmation: "Password", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2015-02-06 14:02:10", last_sign_in_at: "2015-02-06 14:02:10", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", admin: false},
+])
+puts "Success: User data loaded"
