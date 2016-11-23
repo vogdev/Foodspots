@@ -2,7 +2,7 @@ class FoodspotsController < ApplicationController
   before_action :authorize_admin, except: [:index, :show, :upvote, :downvote, :near, :search, :popular]
   before_action :find_foodspot, only: [ :show, :edit, :update, :destroy, :upvote, :downvote]
   def index
-      @foodspots = Foodspot.where(visible: true).order('created_at DESC')
+      @foodspots = Foodspot.where(visible: true).order(cached_votes_total: :desc, created_at: :desc).take(6)
   end
 
   def show

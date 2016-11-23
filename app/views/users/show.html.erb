@@ -1,18 +1,56 @@
-<p><%= @user.username %> Liked</p>
 
-<% @user.find_voted_items.each do |item| %>
-      <%= item.name%><br>
-      <%= item.address%><br>
-      <%= link_to item do %>
-      <%= image_tag item.image.url(:thumb) %>
-      <% end %>
-      <p> Liked by <span class="color"> <%= pluralize(item.get_upvotes.size ,'person') %> </span></p>
-      <% item.votes_for.voters.each do |p| %>
-      <%if p.provider  == "facebook" %>
-      <%= image_tag p.avatar_file_name + "?type=normal"%>
-        <%else%>
-        <%= image_tag(p.avatar.url(:thumb)) %>
+<div class="row">
+
+  <div class="media padding-15">
+  <div class="media-left">
+      <%if @user.provider  == "facebook" %>
+      <%= image_tag @user.avatar_file_name + "?type=normal", class: "img-circle user-img-thumb",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{@user.username}"%>
+      <%else%>
+      <%= image_tag @user.avatar.url(:thumb), class: "img-circle user-img-thumb",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{@user.username}" %>
       <%end%>
-      <%end%>
-      <br>
-<%end%>
+  </div>
+  <div class="media-body">
+    <h2 class="media-heading"><%= @user.username%></h2>
+    <p class="userinfo"><span class="glyphicon glyphicon-heart main-color"></span> <span class="main-color"> <%= @user.find_voted_items.count%></span> food spots</h2>
+  </div>
+</div>
+
+  <% @user.find_voted_items.each do |spot| %>
+  <div class="margin-b col-sm-12 col-md-6 col-lg-4 ">
+        <%= image_tag spot.image.url(:thumb), class: "foodspot-img" %>
+        <div class="caption">
+          <%= link_to spot , data: { turbolinks: false } do %>
+          <div class="text-center">
+            <h3 class="foodspot-name"><%= spot.name%></h3>
+            <p><%= truncate(spot.address, length: 30)%></p>
+            <% if user_signed_in? %>
+              <% if current_user.liked? spot %>
+              <%= link_to unlike_foodspot_path(spot), method: :put do %>
+              <span class="glyphicon glyphicon-heart like"></span>
+              <%end%>
+                <% else %>
+                <%= link_to like_foodspot_path(spot), method: :put do %>
+                <span class="glyphicon glyphicon-heart unlike"></span>
+                <%end%>
+                <% end %>
+            <%end%>
+          </div>
+          <% end %>
+          <%if user_signed_in?%>
+              <div class="voters-img pull-right">
+                <% spot.votes_for.voters.last(4).each do |p| %>
+                <%if p.provider  == "facebook" %>
+                <%= image_tag p.avatar_file_name + "?type=normal", class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}"%>
+                <%else%>
+                <%= image_tag p.avatar.url(:thumb), class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}" %>
+                <%end%>
+                <%end%>
+            </div>
+            <% if spot.get_upvotes.size != 0 %>
+              <p class="liked"> Liked by <sapn class="upvotes"><%= spot.get_upvotes.size %></sapn> <%= "person".pluralize(spot.get_upvotes.size)%></p>
+            <%end%>
+          <%end%>
+        </div>
+</div>
+  <% end %>
+</div>

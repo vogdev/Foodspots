@@ -1,41 +1,131 @@
-.container-fluid {
-  margin-right: auto;
-  margin-left: auto;
-  /* padding-left: 15px; */
-  /* padding-right: 15px; */
-}
 @import "bootstrap-sprockets";
 @import "bootstrap";
+.nav-m-b {
+  margin-bottom: 20px;
+}
+.navbar-nav li a {
+ line-height: 45px;
+}
+.navbar-inverse .navbar-brand {
+  margin-top: 11px;
+  color: #FFFFFF;
+  font-size: 20px;
+  font-weight: 800;
+}
+.navbar-inverse .navbar-brand:hover {
+  margin-top: 11px;
+  color: #ed7819;
+  font-size: 20px;
+  font-weight: 800;
+}
+.foodspot-name {
+  font-size: 25px;
+  font-weight: bold;
+}
 .foodspot-img{
-  width: 370px;
-  position: absolute;
+  width: 360px;
 }
 .user-img-small {
   width: 45px;
+  cursor: pointer;
 }
 .voters-img{
-  padding-top: 135px;
+  position: absolute;
+  right: 2px;
+  bottom: -17px;
 }
 .caption {
-  position: relative;
-  height: 290px;
+    position: absolute;
+    width: 360px;
+    height: 240px;
+    bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.46);
 }
 .liked{
-  padding-top: 135px;
+  position: absolute;
+  bottom: 0;
+  left: 5px;
   font-weight: 800;
   font-size: larger;
   color: #e4e4e4;
-  padding-left: 6px;
 }
 .upvotes{
   color: #fc8735
 }
-a{
+.caption a{
 text-decoration:none;
 color: #FFFFFF;
 }
-a:hover
-{
-   text-decoration: none;
-   color: #FFFFFF;
+.caption a:hover, a:focus {
+    color: #ffffff;
+    text-decoration: none;
+}
+.navbar {
+    border-radius: 0px;
+}
+.margin-b{
+  margin-bottom: 40px;
+  min-height: 250px;
+}
+.like {
+  font-size: 30px;
+  color: #ed7819;
+}
+.like:hover {
+  font-size: 30px;
+  color: rgb(195, 195, 195);
+}
+.unlike {
+  font-size: 25px;
+  color: rgba(195, 195, 195, 0.74);
+}
+.unlike:hover {
+  font-size: 30px;
+  color: #ed7819;
+}
+.main-color{
+  color: #ed7819;
+}
+
+.userinfo {
+  font-size: 15px;
+  font-weight: 600;
+}
+.padding-15 {
+    padding: 20px 0 20px 15px;
+}
+.user-img-thumb {
+    width: 70px;
+    cursor: pointer;
+}
+ @media (max-width: 600px) {
+   .caption {
+     position: absolute;
+     width: 340px;
+     height: 227px;
+     bottom: 23px;
+     background-color: rgba(0, 0, 0, 0.46);
+ }
+
+   .foodspot-img {
+   width: 340px;
+   }
+ }
+
+ a:hover, a:focus {
+     text-decoration: none;
+ }
+.liked-show {
+  font-weight: 700;
+  padding-top: 25px;
+  color: #1f1f1f;
+}
+.fb-comments {
+    height: 100%;
+    width: 750px;
+    margin-top: 15px;
+    background-color: rgba(59, 87, 157, 0.1);
+}
+.info {
+  padding-top: 25px;
 }

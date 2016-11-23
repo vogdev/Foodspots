@@ -5,32 +5,48 @@
 <%= submit_tag 'Search' %>
 <%end%>
 <div class="row">
-
   <% @foodspots.each do |spot| %>
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <%= link_to spot , data: { turbolinks: false } do %>
-      <%= image_tag spot.image.url(:thumb) %>
-      <% end %>
-      <div class="caption">
-        <h3><%= spot.name%></h3>
-        <p><%= spot.address%></p>
-        <%if user_signed_in?%>
-            <p> Liked by <span class="color"> <%= pluralize(spot.get_upvotes.size ,'person') %> </span></p>
-            <% spot.votes_for.voters.each do |p| %>
-            <%if p.provider  == "facebook" %>
-            <%= image_tag p.avatar_file_name + "?type=normal", class: "img-circle"%>
-            <%else%>
-            <%= image_tag p.avatar.url(:thumb), class: "img-circle" %>
+  <div class="margin-b col-sm-12 col-md-6 col-lg-4">
+        <%= image_tag spot.image.url(:thumb), class: "foodspot-img" %>
+        <div class="caption">
+          <%= link_to spot , data: { turbolinks: false } do %>
+          <div class="text-center">
+            <h3 class="foodspot-name"><%= spot.name%></h3>
+            <p><%= truncate(spot.address, length: 30)%></p>
+            <% if user_signed_in? %>
+              <% if current_user.liked? spot %>
+              <%= link_to unlike_foodspot_path(spot), method: :put do %>
+              <span class="glyphicon glyphicon-heart like"></span>
+              <%end%>
+                <% else %>
+                <%= link_to like_foodspot_path(spot), method: :put do %>
+                <span class="glyphicon glyphicon-heart unlike"></span>
+                <%end%>
+                <% end %>
             <%end%>
+          </div>
+          <% end %>
+          <%if user_signed_in?%>
+              <div class="voters-img pull-right">
+                <% spot.votes_for.voters.take(3).each do |p| %>
+                <%if p.provider  == "facebook" %>
+                <%= image_tag p.avatar_file_name + "?type=normal", class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}"%>
+                <%else%>
+                <%= image_tag p.avatar.url(:thumb), class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}" %>
+                <%end%>
+                <%end%>
+            </div>
+            <% if spot.get_upvotes.size != 0 %>
+              <p class="liked"> Liked by <sapn class="upvotes"><%= spot.get_upvotes.size %></sapn> <%= "person".pluralize(spot.get_upvotes.size)%></p>
             <%end%>
-        <%end%>
-      </div>
-    </div>
-  </div>
-  <% end %>
-
+          <%end%>
+        </div>
 </div>
+  <% end %>
+</div>
+
+
+
 <% if current_user.try(:admin?) %>
   <%= link_to "add Foodspot", new_foodspot_path%>
 <% end %>

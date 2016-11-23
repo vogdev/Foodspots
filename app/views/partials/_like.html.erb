@@ -1,0 +1,9 @@
+<% if current_user.liked? spot %>
+  <%= link_to unlike_foodspot_path(spot), method: :put do %>
+    <span class="glyphicon glyphicon-heart like"></span>
+  <%end%>
+  <% else %>
+  <%= link_to like_foodspot_path(spot), method: :put do %>
+    <span class="glyphicon glyphicon-heart unlike"></span>
+  <%end%>
+<% end %>
