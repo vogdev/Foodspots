@@ -1,5 +1,4 @@
-<button type="button" class="btn" data-toggle="modal" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
-
+<button id="openmodal" type="button" class="btn" data-toggle="modal" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-option-horizontal"></span></button>
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
 <div class="modal-dialog modal-sm" role="document">
 <div class="modal-content">
@@ -11,6 +10,7 @@
       <%= image_tag p.avatar.url(:thumb), class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}" %>
     <%end%>
   <% end %>
+</br>
   <%end%>
 </div>
 </div>

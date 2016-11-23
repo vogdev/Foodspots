@@ -12,8 +12,9 @@
   <div class="col-sm-12 col-md-8 col-lg-8">
     <%= image_tag @foodspot.image.url(:original) %>
     <% unless @foodspot.votes_for.voters.empty? %>
+
       <p class="liked-show"> Liked by <sapn class="upvotes"><%= @foodspot.get_upvotes.size %></sapn> <%= "person".pluralize(@foodspot.get_upvotes.size)%></p>
-      <% @foodspot.votes_for.voters.last(6).each do |p| %>
+      <% @foodspot.votes_for.voters.last(3).each do |p| %>
         <%= link_to p do %>
             <%if p.provider  == "facebook" %>
               <%= image_tag p.avatar_file_name + "?type=normal", class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}"%>
@@ -23,8 +24,12 @@
         <% end %>
       <%end%>
       <% if @foodspot.votes_for.voters.count > 3 %>
-        <%= render 'partials/users_modal'%>
+      <%#= render 'partials/users_modal'%>
+        <%= link_to foodspot_path, id: "mymodal", class:"btn seemore",remote: true do%>
+          <span class="glyphicon glyphicon-option-horizontal"></span>
+        <%end%>
       <%end%>
+
     <%end%>
     <div class="fb-comments">
       <%= render 'partials/facebookComments'%>

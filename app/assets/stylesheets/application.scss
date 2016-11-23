@@ -98,19 +98,6 @@ color: #FFFFFF;
     width: 70px;
     cursor: pointer;
 }
- @media (max-width: 600px) {
-   .caption {
-     position: absolute;
-     width: 340px;
-     height: 227px;
-     bottom: 23px;
-     background-color: rgba(0, 0, 0, 0.46);
- }
-
-   .foodspot-img {
-   width: 340px;
-   }
- }
 
  a:hover, a:focus {
      text-decoration: none;
@@ -128,4 +115,35 @@ color: #FFFFFF;
 }
 .info {
   padding-top: 25px;
+}
+
+
+
+
+
+
+.seemore {
+  background-color: #fc8735;
+}
+
+
+
+
+
+
+
+
+
+@media (max-width: 600px) {
+  .caption {
+    position: absolute;
+    width: 340px;
+    height: 227px;
+    bottom: 23px;
+    background-color: rgba(0, 0, 0, 0.46);
+  }
+
+  .foodspot-img {
+    width: 340px;
+  }
 }
