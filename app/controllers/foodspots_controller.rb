@@ -8,10 +8,12 @@ class FoodspotsController < ApplicationController
   def show
       @voters_number = @foodspot.votes_for.voters.count
   end
+
   def popular
     # foodspots are orederd by total_votes first and created_at time second
-    @foodspots = Foodspot.where(visible: true).order(cached_votes_total: :desc, created_at: :desc)
+    @foodspots = Foodspot.where(visible: true).paginate(:page => params[:page], :per_page => 6).order(cached_votes_total: :desc, created_at: :desc)
   end
+
   def near
   # i commented this variables because i am in development mode => visitor_latitude and visitor_longitude are = 0.0
   # visitor_latitude = request.location.latitude
@@ -20,12 +22,15 @@ class FoodspotsController < ApplicationController
     visitor_longitude = -111.9052063
     @foodspots = Foodspot.near([visitor_latitude, visitor_longitude], 50, :ordare => :distance).where(visible: true)
   end
+
   def search
     @foodspots = Foodspot.search(params)
   end
+
   def new
     @foodspot = Foodspot.new
   end
+
   def create
     @foodspot = Foodspot.create(foodspot_params)
     if @foodspot.save

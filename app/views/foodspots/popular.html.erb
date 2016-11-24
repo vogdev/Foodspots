@@ -1,33 +1,36 @@
-  <div class="row">
-<h2>Popular spots <%= @foodspots.count%></h2>
-    <% @foodspots.each do |spot| %>
-    <div class="margin-b col-sm-12 col-md-6 col-lg-4">
-          <%= image_tag spot.image.url(:thumb), class: "foodspot-img" %>
-          <div class="caption">
-            <%= link_to spot , data: { turbolinks: false } do %>
-            <div class="text-center">
-              <h3 class="foodspot-name"><%= spot.name%></h3>
-              <p><%= truncate(spot.address, length: 30)%></p>
-              <% if user_signed_in? %>
-                  <%= render 'partials/like' , spot: spot%>
-              <%end%>
-            </div>
-            <% end %>
-            <%if user_signed_in?%>
-                <div class="voters-img pull-right">
-                  <% spot.votes_for.voters.last(3).each do |p| %>
-                  <%if p.provider  == "facebook" %>
-                  <%= image_tag p.avatar_file_name + "?type=normal", class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}"%>
-                  <%else%>
-                  <%= image_tag p.avatar.url(:thumb), class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}" %>
-                  <%end%>
-                  <%end%>
-              </div>
-              <% if spot.get_upvotes.size != 0 %>
-                <p class="liked"> Liked by <sapn class="upvotes"><%= spot.get_upvotes.size %></sapn> <%= "person".pluralize(spot.get_upvotes.size)%></p>
-              <%end%>
+<div class="row">
+  <h2>Popular spots <%= @foodspots.count%></h2>
+  <% @foodspots.each do |spot| %>
+  <div class="margin-b col-sm-12 col-md-6 col-lg-4">
+        <%= image_tag spot.image.url(:thumb), class: "foodspot-img" %>
+        <div class="caption">
+          <%= link_to spot , data: { turbolinks: false } do %>
+          <div class="text-center">
+            <h3 class="foodspot-name"><%= spot.name%></h3>
+            <p><%= truncate(spot.address, length: 30)%></p>
+            <% if user_signed_in? %>
+                <%= render 'partials/like' , spot: spot%>
             <%end%>
           </div>
+          <% end %>
+          <%if user_signed_in?%>
+              <div class="voters-img pull-right">
+                <% spot.votes_for.voters.first(3).each do |p| %>
+                <%if p.provider  == "facebook" %>
+                <%= image_tag p.avatar_file_name + "?type=normal", class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}"%>
+                <%else%>
+                <%= image_tag p.avatar.url(:thumb), class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}" %>
+                <%end%>
+                <%end%>
+            </div>
+            <% if spot.get_upvotes.size != 0 %>
+              <p class="liked"> Liked by <sapn class="upvotes"><%= spot.get_upvotes.size %></sapn> <%= "person".pluralize(spot.get_upvotes.size)%></p>
+            <%end%>
+          <%end%>
+        </div>
   </div>
-    <% end %>
-  </div>
+  <% end %>
+</div>
+<div id="infinite-scrolling">
+<%= will_paginate @foodspots %>
+</div>
