@@ -13,7 +13,8 @@ class User < ApplicationRecord
       user.uid = auth.uid
       user.email = auth.info.email
       user.username = auth.info.name
-      user.avatar_file_name = auth.info.image
+      # user.avatar_file_name = auth.info.image
+      user.avatar = URI.parse("https://graph.facebook.com/v2.6/#{auth.uid}/picture?type=large")
       user.avatar_content_type = "image/jpeg"
       user.password = Devise.friendly_token[0,20]
     end

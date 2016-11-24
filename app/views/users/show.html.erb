@@ -3,11 +3,7 @@
 
   <div class="media padding-15">
   <div class="media-left">
-      <%if @user.provider  == "facebook" %>
-      <%= image_tag @user.avatar_file_name + "?type=normal", class: "img-circle user-img-thumb",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{@user.username}"%>
-      <%else%>
       <%= image_tag @user.avatar.url(:thumb), class: "img-circle user-img-thumb",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{@user.username}" %>
-      <%end%>
   </div>
   <div class="media-body">
     <h2 class="media-heading"><%= @user.username%></h2>
@@ -39,11 +35,7 @@
           <%if user_signed_in?%>
               <div class="voters-img pull-right">
                 <% spot.votes_for.voters.last(4).each do |p| %>
-                <%if p.provider  == "facebook" %>
-                <%= image_tag p.avatar_file_name + "?type=normal", class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}"%>
-                <%else%>
                 <%= image_tag p.avatar.url(:thumb), class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}" %>
-                <%end%>
                 <%end%>
             </div>
             <% if spot.get_upvotes.size != 0 %>
