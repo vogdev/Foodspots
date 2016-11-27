@@ -1,6 +1,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
+@import "bootstrap-material-design";
+.container-top-m {
+  margin-top: 45px;
+}
 .nav-m-b {
   margin-bottom: 20px;
 }
@@ -138,11 +141,6 @@ color: #FFFFFF;
   color: #ffffff;
 }
 
-
-.seemore {
-  color: #333;
-  background-color: #fc8735;
-}
 .modal-user-a {
   color: #000000;
 text-decoration: none;
@@ -152,11 +150,9 @@ text-decoration: none;
 text-decoration: none;
 }
 
-
-
-
-
-
+.image-w {
+  width: 100%
+}
 
 @media (max-width: 600px) {
   .caption {
@@ -170,5 +166,9 @@ text-decoration: none;
   .foodspot-img {
     width: 340px;
     height: 227px;
+  }
+  .fb-comments {
+    height: 100%;
+    width: 100%;
   }
 }

@@ -24,4 +24,5 @@
 
 <% if current_user.try(:admin?) %>
   <%= link_to "add Foodspot", new_foodspot_path%>
+  <%= link_to "admin", admin_foodspots_path %>
 <% end %>

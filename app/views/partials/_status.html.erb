@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box bg-pink hover-expand-effect">
+          <div class="icon">
+              <span class="glyphicon glyphicon-cutlery"></span>
+          </div>
+          <div class="content">
+              <div class="text">Foodspots</div>
+              <div class="number count-to"><%= @foodspots.count%></div>
+          </div>
+      </div>
+  </div>
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box bg-light-green hover-expand-effect">
+          <div class="icon">
+              <span class="glyphicon glyphicon-heart-empty"></span>
+          </div>
+          <div class="content">
+              <div class="text">Likes</div>
+              <div class="number count-to"><%= ActsAsVotable::Vote.count %></div>
+          </div>
+      </div>
+  </div>
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box bg-cyan hover-expand-effect">
+          <div class="icon">
+              <span class="glyphicon glyphicon-user"></span>
+          </div>
+          <div class="content">
+              <div class="text">Users </div>
+              <div class="number count-to"><%= @users %></div>
+          </div>
+      </div>
+  </div>
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box bg-orange hover-expand-effect">
+      <div class="icon">
+        <span class="glyphicon glyphicon-cog"></span>
+      </div>
+      <div class="content">
+        <div class="text">Admins</div>
+        <div class="number count-to">1</div>
+      </div>
+    </div>
+  </div>
+</div>

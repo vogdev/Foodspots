@@ -1,9 +1,13 @@
+<ol class="breadcrumb">
+    <li><a href="/admin/">Home</a></li>
+    <li class="active">Show</li>
+</ol>
 <div class="row">
 
 <div class="col-sm-12 col-md-12 col-lg-12">
   <h2><%= @foodspot.name%>
     <% if user_signed_in? %>
-    <%= render 'partials/like' , spot: @foodspot%>
+    <%= render 'like' , spot: @foodspot%>
     <%end%>
   </h2>
   <p class="pull-right">Kitchen: <%= @foodspot.category.name%></p>
@@ -25,7 +29,7 @@
 
   <!-- here all the voters displayed on a modal via ajax -->
     <% if @voters_number > 3 %>
-        <%= link_to foodspot_path, id: "mymodal",remote: true do%>
+        <%= link_to admin_foodspot_path, id: "mymodal",remote: true do%>
           <button type="button" class="btn btn-fab btn-warning btn-fab-mini">
             <span class="glyphicon glyphicon-option-horizontal"></span>
           </button>

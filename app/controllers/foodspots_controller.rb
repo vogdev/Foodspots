@@ -1,5 +1,5 @@
 class FoodspotsController < ApplicationController
-  before_action :authorize_admin, except: [:index, :show, :upvote, :downvote, :near, :search, :popular]
+  before_action :authorize_admin, except: [:index, :show, :upvote, :downvote, :near, :popular]
   before_action :find_foodspot, only: [ :show, :edit, :update, :destroy, :upvote, :downvote]
   def index
       @foodspots = Foodspot.where(visible: true).order(cached_votes_total: :desc, created_at: :desc).take(6)
@@ -23,43 +23,6 @@ class FoodspotsController < ApplicationController
     @foodspots = Foodspot.near([visitor_latitude, visitor_longitude], 50, :ordare => :distance).where(visible: true)
   end
 
-  def search
-    @foodspots = Foodspot.search(params)
-  end
-
-  def new
-    @foodspot = Foodspot.new
-  end
-
-  def create
-    @foodspot = Foodspot.create(foodspot_params)
-    if @foodspot.save
-      redirect_to root_path
-    else
-      render 'new'
-    end
-  end
-
-  def edit
-    @foodspot
-  end
-
-  def update
-    if @foodspot.update(foodspot_params)
-      redirect_to @foodspot
-    else
-      redirect_to root_path
-    end
-  end
-
-  def destroy
-    if @foodspot.destroy
-      redirect_to root_path
-    else
-      render @foodspot
-    end
-  end
-
   def upvote
         @foodspot.upvote_by current_user
         redirect_back fallback_location: @foodspot
@@ -71,9 +34,6 @@ class FoodspotsController < ApplicationController
   end
 
   private
-  def foodspot_params
-    params.require(:foodspot).permit(:name, :phone, :category_id, :address, :website, :visible, :image)
-  end
   def find_foodspot
        @foodspot = Foodspot.where(visible: true).find(params[:id])
   end

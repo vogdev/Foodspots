@@ -7,6 +7,8 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'admin/admin', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'admin/admin', media: 'all' %>
   </head>
 
   <body>
@@ -21,7 +23,7 @@
 }(document, 'script', 'facebook-jssdk'));
 </script>
 <div class="nav-m-b">
-  <%= render 'partials/navbar'%>
+  <%= render 'partials/admin_navbar'%>
 </div>
 <div class="container container-top-m">
     <span class="notice"><%= notice%></span>
