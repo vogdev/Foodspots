@@ -2,7 +2,7 @@
 @import "bootstrap";
 @import "bootstrap-material-design";
 .container-top-m {
-  margin-top: 45px;
+  margin-top: 80px;
 }
 .nav-m-b {
   margin-bottom: 20px;
@@ -11,14 +11,12 @@
  line-height: 45px;
 }
 .navbar-inverse .navbar-brand {
-  margin-top: 11px;
+  margin-top: 7px;
   color: #FFFFFF;
   font-size: 20px;
   font-weight: 800;
 }
 .navbar-inverse .navbar-brand:hover {
-  margin-top: 11px;
-  color: #ed7819;
   font-size: 20px;
   font-weight: 800;
 }
@@ -26,6 +24,7 @@
   font-size: 25px;
   font-weight: bold;
 }
+
 .foodspot-img{
   width: 360px;
   height: 240px;
@@ -45,6 +44,10 @@
     height: 240px;
     bottom: 10px;
     background-color: rgba(0, 0, 0, 0.46);
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 .liked{
   position: absolute;
@@ -153,16 +156,87 @@ text-decoration: none;
 .image-w {
   width: 100%
 }
-
-@media (max-width: 600px) {
+.navbar .navbar-nav > li > a {
+    color: inherit;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-weight: 800;
+}
+.navbar .navbar-nav > li > a:hover {
+    position: relative;
+    display: block;
+    background-color: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+}
+.navbar .navbar-nav .open .dropdown-menu > li > a {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 800;
+}
+.navbar .navbar-nav .open .dropdown-menu > li > a:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+}
+// *******  header_section *******
+.bg {
+  background-color: #2d2d2d;
+  color: #fff4e7;
+  margin-top: 70px;
+  background-image: url(/assets/bgimage.jpg);
+  height: 550px;
+  background-size: cover;
+}
+.black-bg {
+  background: linear-gradient(rgba(12, 12, 12, 0.43), rgba(0, 0, 0, 0.9));
+  position: absolute;
+  height: 550px;
+  right: 0;
+  left: 0;
+}
+.pos-r {
+  position: relative;
+  padding-top: 40px;
+}
+.head-number {
+  border-radius: 50%;
+  behavior: url(PIE.htc);
+  width: 48px;
+  height: 48px;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0);
+  border: 3px solid #fff;
+  color: #fff;
+  margin: 0 auto;
+  font-size: 25px;
+  font-weight: 900;
+}
+.pad-t {
+  padding-top: 45px;
+}
+.color-b {
+    color: black;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    font-size: 25px;
+}
+// ****---- END header_section ----****
+@media (max-width: 991px) {
   .caption {
-    position: absolute;
-    width: 340px;
-    height: 227px;
-    bottom: 23px;
-    background-color: rgba(0, 0, 0, 0.46);
+      position: absolute;
+      width: 340px;
+      height: 227px;
+      bottom: 10px;
+      background-color: rgba(0, 0, 0, 0.46);
+      left: 15px;
+      top: 0px;
+      right: 15px;
+      margin-left: auto;
+      margin-right: auto;
   }
-
+  .navbar-inverse .navbar-brand {
+      margin-top: 8px;
+  }
   .foodspot-img {
     width: 340px;
     height: 227px;
@@ -170,5 +244,95 @@ text-decoration: none;
   .fb-comments {
     height: 100%;
     width: 100%;
+  }
+  .margin-b {
+    margin-bottom: 0px;
+    min-height: 250px;
+  }
+  .container-top-m {
+    margin-top: 80px;
+  }
+  .navbar-inverse .navbar-brand:hover {
+      color: #eff1ff;
+  }
+  .pad-t {
+    display: none;
+  }
+  .bg {
+    background-color: #2d2d2d;
+    color: #fff4e7;
+    margin-top: 70px;
+    background-image: url(/assets/bgimage.jpg);
+    height: 290px;
+    background-size: cover;
+  }
+
+.black-bg {
+    background: linear-gradient(rgba(12, 12, 12, 0.32), rgba(0, 0, 0, 0.82));
+    position: absolute;
+    height: 290px;
+    right: 0;
+    left: 0;
+  }
+}
+@media (max-width: 767px) {
+  .container-top-m {
+    margin-top: 20px;
+  }
+  .navbar-inverse .navbar-brand {
+    margin-top: 0;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 800;
+  }
+  .navbar-inverse .navbar-brand:hover {
+    margin-top: 0;
+    color: #eff1ff;
+    font-size: 18px;
+  }
+  .navbar .navbar-nav > li > a {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 800;
+  }
+  .bg {
+    margin-top: 40px;
+  }
+
+  .header-title {
+    font-size: 27px;
+  }
+  .popular-title{
+    color: black;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-size: 20px;
+  }
+  .lead {
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.4;
+  }
+}
+
+@media all and (max-width: 320px) and (min-width: 100px) {
+  .foodspot-img {
+      width: 290px;
+      height: 200px;
+  }
+  .caption {
+    position: absolute;
+    width: 290px;
+    height: 201px;
+    bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.46);
+    left: 15px;
+    top: 0px;
+    right: 15px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

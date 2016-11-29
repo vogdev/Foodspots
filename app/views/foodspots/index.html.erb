@@ -1,12 +1,7 @@
-<%= form_tag search_foodspots_path, method: :get do |f| %>
-<%= text_field_tag :search, nil, placeholder: "hot dogs , burgers , etc."%>
-<!-- <%= text_field_tag :address, nil, placeholder: "chicago , Morocco , etc."%> -->
-<%= select_tag :category, options_for_select(Category.all.map{ |c| [c.name, c.id]}) %>
-<%= submit_tag 'Search' %>
-<%end%>
 <div class="row">
+  <p class="text-center color-b popular-title">Most popular foodspots this week</p>
   <% @foodspots.each do |spot| %>
-  <div class="margin-b col-sm-12 col-md-6 col-lg-4">
+  <div class="margin-b col-xs-12 col-sm-6 col-lg-4 text-center">
         <%= image_tag spot.image.url(:thumb), class: "foodspot-img" %>
         <%= link_to spot , data: { turbolinks: false }, class:"index-link" do %>
         <div class="caption">

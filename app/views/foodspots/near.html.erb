@@ -1,6 +1,7 @@
-<div class="row">
+<div class="row container-top-m">
+    <h2 class="text-center">Food Spots nearby</h2>
   <% @foodspots.each do |spot| %>
-  <div class="margin-b col-sm-12 col-md-6 col-lg-4">
+  <div class="margin-b col-xs-12 col-sm-6 col-lg-4 text-center">
         <%= image_tag spot.image.url(:thumb), class: "foodspot-img" %>
         <div class="caption">
           <%= link_to spot , data: { turbolinks: false } do %>
