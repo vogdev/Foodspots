@@ -26,9 +26,9 @@ class Admin::FoodspotsController < Admin::AdminController
 
   def update
     if @foodspot.update(foodspot_params)
-      redirect_to [:admin, @foodspot]
+      redirect_back(fallback_location: root_path)
     else
-      redirect_to admin_foodspots_path
+      redirect_back(fallback_location: root_path)
     end
   end
 

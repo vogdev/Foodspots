@@ -18,4 +18,9 @@
 //= require_tree .
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
-})
+});
+window.setTimeout(function() {
+    $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 4000);

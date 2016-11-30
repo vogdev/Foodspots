@@ -1,41 +1,43 @@
-<%= form_for  [:admin, @foodspot], html: { multipart: true } do |f| %>
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name, required: true, class: "form-control"   %>
-  </div>
-
+<div class="row row-top-m">
+  <%= form_for  [:admin, @foodspot], html: { multipart: true } do |f| %>
     <div class="field">
-    <%= f.label :phone %>
-    <%= f.text_field :phone, required: true, class: "form-control"   %>
-  </div>
-
-  <div class="field">
-    <%= f.label :category_id %>
-    <!-- <%= f.text_field :category_id, required: true  %> -->
-    <%= collection_select( :foodspot, :category_id, Category.all, :id, :name, { :multiple => false }, {class: "btn btn-default btn-raised"}) %>
-
-  </div>
-
-  <div class="field">
-    <%= f.label :address %>
-    <%= f.text_field :address, required: true, class: "form-control"  %>
-  </div>
-
-  <div class="field">
-    <%= f.label :website %>
-    <%= f.text_field :website, required: true, class: "form-control"   %>
-  </div>
-  <div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :image  %>
-  </div>
-
-  <div class="field">
-    <%= f.label :visible %>
-    <%= f.check_box :visible %>
-  </div>
-
-  <div class="actions text-center">
-    <%= f.submit "Create Foodspot", class:"btn btn-raised btn-success"%>
-  </div>
-<% end %>
+      <%= f.label :name %>
+      <%= f.text_field :name, required: true, class: "form-control"   %>
+    </div>
+  
+      <div class="field">
+      <%= f.label :phone %>
+      <%= f.text_field :phone, required: true, class: "form-control"   %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :category_id %>
+      <!-- <%= f.text_field :category_id, required: true  %> -->
+      <%= collection_select( :foodspot, :category_id, Category.all, :id, :name, { :multiple => false }, {class: "btn btn-default btn-raised"}) %>
+  
+    </div>
+  
+    <div class="field">
+      <%= f.label :address %>
+      <%= f.text_field :address, required: true, class: "form-control"  %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :website %>
+      <%= f.text_field :website, required: true, class: "form-control"   %>
+    </div>
+    <div class="field">
+      <%= f.label :image %>
+      <%= f.file_field :image  %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :visible %>
+      <%= f.check_box :visible %>
+    </div>
+  
+    <div class="actions text-center">
+      <%= f.submit "Create Foodspot", class:"btn btn-raised btn-success"%>
+    </div>
+  <% end %>
+</div>

@@ -15,7 +15,7 @@
           <% end %>
           <%if user_signed_in?%>
               <div class="voters-img pull-right">
-                <% spot.votes_for.voters.first(3).each do |p| %>
+                <% spot.votes_for.voters.last(3).each do |p| %>
                 <%= image_tag p.avatar.url(:thumb), class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}" %>
                 <%end%>
             </div>
