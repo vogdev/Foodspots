@@ -33,21 +33,53 @@
   width: 45px;
   cursor: pointer;
 }
+.user-img-thumb {
+  width: 70px;
+  cursor: pointer;
+}
+.user-img-medium {
+  width: 95px;
+  cursor: pointer;
+}
+.btn-user{
+  background-color: #3f51b5;
+  color: rgba(255, 255, 255, 0.84);
+  position: relative;
+  padding: 8px 30px;
+  border: 0;
+  margin: 10px 1px;
+  cursor: pointer;
+  border-radius: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.2s ease, box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none !important;
+}
 .voters-img{
   position: absolute;
   right: 2px;
   bottom: -17px;
 }
+body.modal-open .supreme-container{
+    -webkit-filter: blur(1px);
+    -moz-filter: blur(1px);
+    -o-filter: blur(1px);
+    -ms-filter: blur(1px);
+    filter: blur(1px);
+}
 .caption {
-    position: absolute;
-    width: 360px;
-    height: 240px;
-    bottom: 10px;
-    background-color: rgba(0, 0, 0, 0.46);
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
+  position: absolute;
+  width: 360px;
+  height: 240px;
+  bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.46);
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 2px;
+  border: 0;
 }
 .liked{
   position: absolute;
@@ -108,10 +140,6 @@ color: #FFFFFF;
 }
 .padding-15 {
     padding: 20px 0 20px 15px;
-}
-.user-img-thumb {
-    width: 70px;
-    cursor: pointer;
 }
 .myalert {
   position: absolute;
@@ -222,12 +250,24 @@ text-decoration: none;
 .pad-t {
   padding-top: 45px;
 }
+.header-title {
+  color:#FFFFFF;
+  font-size:30px;
+  font-weight: 900;
+}
 .color-b {
   color: black;
   padding-bottom: 20px;
   padding-top: 20px;
   font-size: 25px;
 }
+.cta {
+  color:#FFFFFF;
+}
+.cta:hover {
+  color:#FFFFFF;
+}
+// ****---- END header_section ----****
 .navbar .navbar-brand {
   height: 50px;
   padding: 20px 15px;
@@ -235,7 +275,6 @@ text-decoration: none;
 .row-top-m {
   padding-top: 80px;  
 }
-// ****---- END header_section ----****
 @media (max-width: 991px) {
   .caption {
       position: absolute;

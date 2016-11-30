@@ -14,6 +14,7 @@
 //= require bootstrap-sprockets
 //= require bootstrap-material-design
 //= require jquery_ujs
+//= require data-confirm-modal
 //= require turbolinks
 //= require_tree .
 $(function () {

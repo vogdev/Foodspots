@@ -1,35 +1,38 @@
-
+<div class="supreme-container">
 <%= render 'partials/status'%>
-<div class="row">
-  <% @foodspots.each do |spot| %>
-    <div class="margin-b col-xs-12 col-sm-6 col-lg-4 text-center">
-      <%= image_tag spot.image.url(:thumb), class: "foodspot-img" %>
-      <%= link_to [:admin, spot] , data: { turbolinks: false }, class:"index-link" do %>
-      <div class="caption">
-        <div class="text-center">
-          <h3 class="foodspot-name"><%= spot.name%></h3>
-          <p><%= truncate(spot.address, length: 30)%></p>
-          <% unless spot.visible %>
-            <span class="not-visible glyphicon glyphicon-eye-close"></span>
-          <%end%>
-          <div class="action">
-            <ul class="list-group">
-              <li class="dropdown">
-                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-                  <span class="pad-action glyphicon glyphicon-option-vertical"></span>
-                </a>
-                <ul class="dropdown-menu pull-right">
-                  <li><%= link_to "Edit Foodspot", edit_admin_foodspot_path(spot),remote: true%></li>
-                  <li><%= link_to  'Remove', [:admin, spot], method: :delete, data: { confirm: 'Click Sure! to Delete this item' }%></li>
-                </ul>
-              </li>
-            </ul>
+  <div class="row">
+    <% @foodspots.each do |spot| %>
+      <div class="margin-b col-xs-12 col-sm-6 col-lg-4 text-center">
+        <%= image_tag spot.image.url(:thumb), class: "foodspot-img" %>
+        <%= link_to [:admin, spot] , data: { turbolinks: false }, class:"index-link" do %>
+        <div class="caption">
+          <div class="text-center">
+            <h3 class="foodspot-name"><%= spot.name%></h3>
+            <p><%= truncate(spot.address, length: 30)%></p>
+            <% unless spot.visible %>
+              <span class="not-visible glyphicon glyphicon-eye-close"></span>
+            <%end%>
+            <div class="action">
+              <ul class="list-group">
+                <li class="dropdown">
+                  <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                    <span class="pad-action glyphicon glyphicon-option-vertical"></span>
+                  </a>
+                  <ul class="dropdown-menu pull-right">
+                    <li><%= link_to "Edit Foodspot", edit_admin_foodspot_path(spot),remote: true%></li>
+                    <li><%= link_to  'Remove', [:admin, spot], method: :delete, data: { confirm: 'Click Sure! to Delete this item' }%></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
+        <% end %>
       </div>
-      <% end %>
-    </div>
-  <% end %>
-  <%= will_paginate @foodspots %>
+    <% end %>
+  </div>
+  <div class="row text-center">
+    <%= will_paginate @foodspots, renderer: BootstrapPagination::Rails %>
+  </div>
 </div>
 <span id="mymodal"></span>
