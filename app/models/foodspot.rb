@@ -1,4 +1,5 @@
 class Foodspot < ApplicationRecord
+  searchkick
   has_many :votes
   belongs_to :category
   acts_as_votable
@@ -12,11 +13,4 @@ class Foodspot < ApplicationRecord
   validates_attachment_presence :image
   # validates :title, :description, :price, :city_id, :phone, :category_id, presence: true
 
-
-  def self.search(params)
-      foodspots = Foodspot.where(category_id: params[:category].to_i)
-      foodspots = foodspots.where("name like ?", "%#{params[:search]}%") if params[:search].present?
-      # foodspots = foodspots.near(params[:address]) if params[:address].present?
-      foodspots
-  end
 end

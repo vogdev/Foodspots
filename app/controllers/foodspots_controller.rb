@@ -1,6 +1,14 @@
 class FoodspotsController < ApplicationController
-  before_action :authorize_admin, except: [:index, :show, :upvote, :downvote, :near, :popular]
+  before_action :authorize_admin, except: [:index, :show, :upvote, :downvote, :near, :popular, :search]
   before_action :find_foodspot, only: [ :show, :edit, :update, :destroy, :upvote, :downvote]
+  def search
+    if params[:search].present?
+      @foodspots = Foodspot.search (params[:search]), page: params[:page], per_page: 6, where: {visible: true}
+    else
+      redirect_back fallback_location: root_path
+      flash[:notice] = "No spots match your search"
+    end
+  end
   def index
       @foodspots = Foodspot.where(visible: true).order(cached_votes_total: :desc, created_at: :desc).take(6)
   end

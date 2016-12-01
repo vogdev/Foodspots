@@ -15,6 +15,12 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
+          <%= form_tag search_admin_foodspots_path, method: :get, class: "navbar-form navbar-left", role: "search" do %>
+            <div class="form-group">
+              <%= text_field_tag :search, params[:search], class: "form-control" %>
+              <%= submit_tag "Search", name: nil, class: "btn btn-info" %>
+            </div>
+          <% end %>
           <li><%= link_to "Add foodspot", new_admin_foodspot_path,remote: true %></li>
           <li><a href="/">Back to user view</a></li>
           <li>

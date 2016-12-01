@@ -1,6 +1,14 @@
 class Admin::FoodspotsController < Admin::AdminController
   layout "admin"
   before_action :find_foodspot, only: [ :show, :edit, :update, :destroy, :upvote, :downvote]
+  def search
+    if params[:search].present?
+      @foodspots = Foodspot.search (params[:search]), page: params[:page], per_page: 6
+    else
+      redirect_back fallback_location: root_path
+      flash[:notice] = "No spots match your search"
+    end
+  end
   def index
     @foodspots = Foodspot.paginate(:page => params[:page], :per_page => 6).order(cached_votes_total: :desc, created_at: :desc)
     @users = User.all.count
