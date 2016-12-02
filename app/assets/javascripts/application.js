@@ -25,3 +25,29 @@ window.setTimeout(function() {
         $(this).remove(); 
     });
 }, 4000);
+
+
+$( document ).ready(function() {
+        $('#lunch-search').click(function (){
+          if ($( window ).width() < 500) {
+            $('#lunch-search').attr('data-toggle', 'collapse');
+          }else if($( window ).width() > 500) {
+            $('#lunch-search').removeAttr("data-toggle");
+          };
+          $('.search-bar').addClass("open");
+          $('.search-bar').find('input[type="text"]').focus();
+        }); 
+        
+        $('.close-search').click(function (){
+        $('.search-bar').removeClass("open")
+        });
+        
+        
+         $(".search-bar").on('keyup', function (e) {
+            if (e.keyCode == 27) {
+               $('.search-bar').removeClass("open")
+            }
+        });
+
+    console.log( "ready!" );
+});

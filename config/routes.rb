@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       put "unlike"  => "foodspots#downvote"
     end
     collection do
-      get 'search'
+      get 'search'  => "foodspots#search"
       get 'popular'  => "foodspots#popular"
     end
   end
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
         put "unlike"  => "foodspots#downvote"
       end
       collection do
-         get 'search'
+         get 'search' => "foodspots#search"
       end
     end
   end

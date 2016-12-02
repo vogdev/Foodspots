@@ -1,0 +1,33 @@
+<div class="search-bar open">
+    <div class="search-icon">
+        <i class="material-icons">search</i>
+    </div>
+    <input type="text" placeholder="START TYPING...">
+    <div class="close-search">
+        <i class="material-icons">close</i>
+    </div>
+</div>
+<div class="search-bar open">
+    <div class="search-icon">
+        <span class="glyphicon glyphicon-search"></span>
+    </div>
+    <form role="search" action="/admin/foodspots/search" accept-charset="UTF-8" method="get">
+        <input name="utf8" type="hidden" value="✓">
+        <input type="text" name="search" id="search" placeholder="START TYPING...">
+        <div class="close-search">
+            <span class="glyphicon glyphicon-remove"></span>
+        </div>
+    </form>  
+</div>
+
+<div class="search-bar">
+    <div class="search-icon">
+        <span class="glyphicon glyphicon-search"></span>
+    </div>
+    <%= form_tag search_admin_foodspots_path, method: :get, role: "search" do %>
+    <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "START TYPING..."%>
+    <div class="close-search">
+    <span class="glyphicon glyphicon-remove"></span>
+    </div>
+    <% end %>
+</div>

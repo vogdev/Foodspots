@@ -1,3 +1,14 @@
+  <div class="search-bar">
+      <div class="search-icon">
+          <span class="glyphicon glyphicon-search search-bar-color"></span>
+      </div>
+      <%= form_tag search_foodspots_path, method: :get, role: "search" do %>
+      <%= text_field_tag :search, params[:search], placeholder: "START TYPING...", autocomplete:"off"%>
+      <div class="close-search">
+      <span class="glyphicon glyphicon-remove"></span>
+      </div>
+      <% end %>
+  </div>
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -14,12 +25,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <%= form_tag search_foodspots_path, method: :get, class: "navbar-form navbar-left", role: "search" do %>
-          <div class="form-group">
-            <%= text_field_tag :search, params[:search], class: "form-control" %>
-            <%= submit_tag "Search", name: nil, class: "btn btn-info" %>
-          </div>
-        <% end %>
+       <li class="text-center"> <span class="glyphicon glyphicon-search search-color" id="lunch-search" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"></span></li>
         <% if current_user.try(:admin?) %>
         <li><a href="/admin">Go To Admin Page</a></li>
         <% end %>
