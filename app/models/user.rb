@@ -1,11 +1,10 @@
 class User < ApplicationRecord
+   mount_uploader :avatar, AvatarUploader
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   has_many :votes
   acts_as_voter
 
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "50x50#" }, :default_url => "/images/:style/missing.png"
-  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -14,8 +13,8 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.username = auth.info.name
       # user.avatar_file_name = auth.info.image
-      user.avatar = URI.parse("https://graph.facebook.com/v2.6/#{auth.uid}/picture?type=large")
-      user.avatar_content_type = "image/jpeg"
+      # user.avatar = URI.parse("https://graph.facebook.com/v2.6/#{auth.uid}/picture?type=large")
+      user.remote_avatar_url = auth.info.image.gsub('http://','https://')
       user.password = Devise.friendly_token[0,20]
     end
   end

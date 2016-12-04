@@ -13,7 +13,7 @@
 
   <% @user.find_voted_items.each do |spot| %>
   <div class="margin-b col-sm-12 col-md-6 col-lg-4 ">
-        <%= image_tag spot.image.url(:thumb), class: "foodspot-img" %>
+        <%= image_tag spot.avatar.url(:thumb), class: "foodspot-img" %>
         <div class="caption">
           <%= link_to spot , data: { turbolinks: false } do %>
           <div class="text-center">
@@ -35,7 +35,7 @@
           <%if user_signed_in?%>
               <div class="voters-img pull-right">
                 <% spot.votes_for.voters.last(4).each do |p| %>
-                <%= image_tag p.avatar.url(:thumb), class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}" %>
+                <%= image_tag p.avatar.url(:medium), class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}" %>
                 <%end%>
             </div>
             <% if spot.get_upvotes.size != 0 %>

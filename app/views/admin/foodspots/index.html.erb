@@ -3,7 +3,7 @@
   <div class="row">
     <% @foodspots.each do |spot| %>
       <div class="margin-b col-xs-12 col-sm-6 col-lg-4 text-center">
-        <%= image_tag spot.image.url(:thumb), class: "foodspot-img" %>
+        <%= image_tag spot.avatar.url(:thumb), class: "foodspot-img" %>
         <%= link_to [:admin, spot] , data: { turbolinks: false }, class:"index-link" do %>
         <div class="caption">
           <div class="text-center">
@@ -35,4 +35,3 @@
     <%= will_paginate @foodspots, renderer: BootstrapPagination::Rails %>
   </div>
 </div>
-<span id="mymodal"></span>

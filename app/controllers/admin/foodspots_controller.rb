@@ -58,7 +58,7 @@ class Admin::FoodspotsController < Admin::AdminController
   end
   private
   def foodspot_params
-    params.require(:foodspot).permit(:name, :phone, :category_id, :address, :website, :visible, :image)
+    params.require(:foodspot).permit(:name, :phone, :category_id, :address, :website, :visible, :avatar)
   end
   def find_foodspot
        @foodspot = Foodspot.find(params[:id])

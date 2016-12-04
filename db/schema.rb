@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161118024137) do
+ActiveRecord::Schema.define(version: 20161204181355) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -27,10 +27,6 @@ ActiveRecord::Schema.define(version: 20161118024137) do
     t.boolean  "visible",                 default: false
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "cached_votes_total",      default: 0
@@ -40,6 +36,7 @@ ActiveRecord::Schema.define(version: 20161118024137) do
     t.integer  "cached_weighted_score",   default: 0
     t.integer  "cached_weighted_total",   default: 0
     t.float    "cached_weighted_average", default: 0.0
+    t.string   "avatar"
     t.index ["cached_votes_down"], name: "index_foodspots_on_cached_votes_down"
     t.index ["cached_votes_score"], name: "index_foodspots_on_cached_votes_score"
     t.index ["cached_votes_total"], name: "index_foodspots_on_cached_votes_total"
@@ -64,12 +61,9 @@ ActiveRecord::Schema.define(version: 20161118024137) do
     t.datetime "updated_at",                             null: false
     t.boolean  "admin",                  default: false
     t.string   "username"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
     t.string   "provider"
     t.string   "uid"
+    t.string   "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

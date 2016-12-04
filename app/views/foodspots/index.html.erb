@@ -2,7 +2,7 @@
   <p class="text-center color-b popular-title">Most popular foodspots this week</p>
   <% @foodspots.each do |spot| %>
   <div class="margin-b col-xs-12 col-sm-6 col-lg-4 text-center">
-        <%= image_tag spot.image.url(:thumb), class: "foodspot-img" %>
+        <%= image_tag spot.avatar.url(:thumb), class: "foodspot-img" %>
         <%= link_to spot , data: { turbolinks: false }, class:"index-link" do %>
         <div class="caption">
           <div class="text-center">

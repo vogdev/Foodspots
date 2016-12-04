@@ -15,14 +15,14 @@
 </div>
 
 <div class="col-sm-12 col-md-8 col-lg-8">
-    <%= image_tag @foodspot.image.url(:original), class:"image-w" %>
+    <%= image_tag @foodspot.avatar.url(:original), class:"image-w" %>
   <!-- checking if there is no votes then there is no need to process the code below -->
     <% unless @foodspot.votes_for.voters.empty? %>
   <!-- this is the foodspot voters(people who liked this foodspot) onl last 3 who get displayed -->
       <p class="liked-show"> Liked by <sapn class="upvotes"><%= @foodspot.get_upvotes.size %></sapn> <%= "person".pluralize(@foodspot.get_upvotes.size)%></p>
       <% @foodspot.votes_for.voters.last(3).each do |p| %>
         <%= link_to p do %>
-              <%= image_tag p.avatar.url(:thumb), class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}" %>
+              <%= image_tag p.avatar.url(:medium), class: "img-circle user-img-small",:"data-toggle" =>"tooltip", :"data-placement" => "top", :title => "#{p.username}" %>
         <% end %>
       <%end%>
   <!-- //////////////// end of foodspot voters //////////////// -->
