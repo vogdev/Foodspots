@@ -301,7 +301,7 @@ body.modal-open .supreme-container{
 
 .search-bar-color {
   font-size: 25px;
-  color: #585858;
+  color: #3f51b5;
 }
 .search-color {
   font-size: 25px;
@@ -324,7 +324,7 @@ body.modal-open .supreme-container{
 }
 
 .search-bar .close-search .glyphicon-remove {
-  color: #585858;
+  color: #3f51b5;
   opacity: 1;
   -moz-transition: 0.5s;
   -o-transition: 0.5s;
@@ -390,6 +390,7 @@ body.modal-open .supreme-container{
   
 }
 @media (max-width: 767px) {
+  
   .container-top-m {
     margin-top: 20px;
   }
