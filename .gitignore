@@ -25,6 +25,7 @@
 
 /public/system/foodspots
 /public/system/users
+/public/uploads/*
 
 # Ignore application configuration
 /config/application.yml

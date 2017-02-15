@@ -50,15 +50,15 @@
 
 <div class="col-sm-12 col-md-12 col-lg-12 text-center">
 
-  <%unless @foodspot.nearbys(30).where(visible: true).any? == false%>
-  <h3>Foodspots near <%= @foodspot.name %></h3>
-  <% for foodspot in @foodspot.nearbys(30).where(visible: true).take(2)%>
-  Name: <%= foodspot.name%>
-  <%= link_to foodspot.address, foodspot %> <%= foodspot.distance.round(2)%> miles</br>
-  <% end %>
-  <%else%>
-  <h3>There is no Foodspots near <%= @foodspot.name %></h3>
-  <p>I know a FoodSpot near <%= @foodspot.name %> </p>
+  <%if @foodspot.nearbys(300).present? %>
+    <h3>Foodspots near <%= @foodspot.name %></h3>
+        <% for foodspot in @foodspot.nearbys(300).where(visible: true).take(2)%>
+          Name: <%= foodspot.name%>
+         <%= link_to foodspot.address, foodspot %> <%= foodspot.distance.round(2)%> miles</br>
+        <% end %>
+      <%else%>
+        <h3>There is no Foodspots near <%= @foodspot.name %></h3>
+        <p>I know a FoodSpot near <%= @foodspot.name %> </p>
   <%end%>
 
 

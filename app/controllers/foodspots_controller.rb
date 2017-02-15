@@ -10,7 +10,7 @@ class FoodspotsController < ApplicationController
     end
   end
   def index
-      @foodspots = Foodspot.where(visible: true).order(cached_votes_total: :desc, created_at: :desc).take(6)
+      @foodspots = Foodspot.VisibleFoodspots.take(6)
   end
 
   def show
@@ -19,7 +19,7 @@ class FoodspotsController < ApplicationController
 
   def popular
     # foodspots are orederd by total_votes first and created_at time second
-    @foodspots = Foodspot.where(visible: true).paginate(:page => params[:page], :per_page => 6).order(cached_votes_total: :desc, created_at: :desc)
+    @foodspots = Foodspot.PopularFoodspots(params[:page])
   end
 
   def near
